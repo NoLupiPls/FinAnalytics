@@ -9,7 +9,7 @@ class Config:
     USE_STYLESHEET = True
 
     # Версия пакета
-    __version__ = "1.0.0c"
+    __version__ = "1.0.2c"
 
     # Путь к файлу со стилями для PyQt (если используется)
     STYLESHEET_PATH = os.path.join(os.path.dirname(__file__), "resources", "styles.qss")

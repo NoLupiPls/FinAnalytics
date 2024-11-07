@@ -47,6 +47,8 @@ class ReportController:
             start_date = end_date - timedelta(days=180)
         elif period == "За год":
             start_date = end_date - timedelta(days=365)
+        elif period == "За всё время":
+            start_date = None
 
         if not start_date:
             return transactions

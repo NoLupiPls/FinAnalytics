@@ -85,6 +85,7 @@ class Database:
 
         print("Результат запроса:", result)  # Отладочный вывод
 
+
         if result:
             # Преобразуем результат в словарь для удобного использования
             return {
@@ -129,16 +130,16 @@ class Database:
         """Обновляет данные о транзакции по ID."""
         self.cursor.execute("""
             UPDATE transactions
-            SET date = ?, amount = ?, category = ?, type = ?, description = ?
+            SET date = ?, amount = ?, category = ?, type_ = ?, description = ?
             WHERE id = ?
         """, (date, amount, category, type_, description, transaction_id))
         self.connection.commit()
 
 
     def get_total_by_type(self, type_):
-        """Возвращает общую сумму транзакций для указанного типа ('Income' или 'Expense')."""
+        """Возвращает общую сумму транзакций для указанного типа ('Доходы' или 'Расходы')."""
         self.cursor.execute("""
-            SELECT SUM(amount) FROM transactions WHERE type = ?
+            SELECT SUM(amount) FROM transactions WHERE type_ = ?
         """, (type_,))
         result = self.cursor.fetchone()
         return result[0] if result[0] is not None else 0

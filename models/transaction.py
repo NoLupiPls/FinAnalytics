@@ -6,7 +6,7 @@ class Transaction:
         :param date: Дата транзакции (в формате строки, например 'YYYY-MM-DD')
         :param amount: Сумма транзакции (положительное число)
         :param category: Категория транзакции (строка)
-        :param type_: Тип транзакции ('Income' или 'Expense')
+        :param type_: Тип транзакции ('Доходы' или 'Расходы')
         :param description: Описание транзакции (необязательное поле)
         :param transaction_id: ID транзакции в базе данных (если известно)
         """

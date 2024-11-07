@@ -1,3 +1,4 @@
+from PyQt5.QtCore import QDate
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog
 from views.main_window import MainWindow
 from views.add_transaction import AddTransactionDialog
@@ -62,20 +63,37 @@ class MainController:
 
         transaction = self.database.get_transaction_by_id(transaction_id)
         dialog = AddTransactionDialog()
-        dialog.date_input.setDate(transaction.date)
-        dialog.amount_input.setText(str(transaction.amount))
-        dialog.category_input.setCurrentText(transaction.category)
-        dialog.type_input.setCurrentText(transaction.type_)
-        dialog.description_input.setText(transaction.description or "")
+
+        # Предположим, transaction - это словарь
+        transaction_date_str = transaction["date"]
+
+        # Преобразуем строку в QDate
+        transaction_date = QDate.fromString(transaction_date_str, "yyyy-MM-dd")
+
+        # Устанавливаем дату в date_input
+        dialog.date_input.setDate(transaction_date)
+
+        dialog.amount_input.setText(str(transaction["amount"]))
+        dialog.category_input.setCurrentText(transaction["category"])
+        dialog.type_input.setCurrentText(transaction["type_"])
+        dialog.description_input.setText(transaction["description"] or "")
 
         if dialog.exec_() == QDialog.Accepted:
             updated_data = dialog.get_transaction_data()
-            transaction.date = updated_data['date']
-            transaction.amount = updated_data['amount']
-            transaction.category = updated_data['category']
-            transaction.type_ = updated_data['type_']
-            transaction.description = updated_data['description']
-            self.database.update_transaction(transaction)
+            transaction["date"] = updated_data['date']
+            transaction["amount"] = updated_data['amount']
+            transaction["category"] = updated_data['category']
+            transaction["type_"] = updated_data['type_']
+            transaction["description"] = updated_data['description']
+
+            # Получаем данные из объекта или словаря `transaction`
+            date = transaction["date"]
+            amount = transaction["amount"]
+            category = transaction["category"]
+            type_ = transaction["type_"]  # Замените на правильный ключ, если используется словарь
+
+            # Передаем данные в метод update_transaction()
+            self.database.update_transaction(transaction_id, date, amount, category, type_)
             self.load_transactions()
 
 

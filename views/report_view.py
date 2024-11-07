@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from PyQt5.QtWidgets import (
     QDialog, QVBoxLayout, QLabel, QComboBox, QTableWidget,
     QTableWidgetItem, QHeaderView, QHBoxLayout
@@ -76,12 +78,35 @@ class ReportView(QDialog):
         """
         Фильтрует транзакции по выбранному периоду.
 
-        :param period: Период отчета.
+        :param period: Период отчета (Последний месяц, Последние 3 месяца, Последние 6 месяцев, За год, За всё время).
         :return: Отфильтрованные данные транзакций.
         """
-        # Фильтрация данных по выбранному периоду (примерный код)
-        # В реальном приложении здесь будет фильтрация по дате
-        return self.transaction_data  # Пока возвращаем все данные без фильтрации
+        # Текущая дата
+        current_date = datetime.now()
+
+        # Определяем начальную дату для выбранного периода
+        if period == "Последний месяц":
+            start_date = current_date - timedelta(days=30)
+        elif period == "Последние 3 месяца":
+            start_date = current_date - timedelta(days=90)
+        elif period == "Последние 6 месяцев":
+            start_date = current_date - timedelta(days=180)
+        elif period == "За год":
+            start_date = current_date - timedelta(days=365)
+        elif period == "За всё время":
+            start_date = None  # Для "всё время" фильтрация по дате не требуется
+
+        # Фильтруем транзакции по дате
+        if start_date:
+            filtered_transactions = [
+                transaction for transaction in self.transaction_data
+                if datetime.strptime(transaction.date, "%Y-%m-%d") >= start_date
+            ]
+        else:
+            # Если период - "За всё время", возвращаем все транзакции
+            filtered_transactions = self.transaction_data
+
+        return filtered_transactions
 
 
     def update_report_table(self, data):
