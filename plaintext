@@ -1,0 +1,18 @@
+finance_tracker/
+├── main.py               # Запуск приложения
+├── config.py             # Конфигурации и настройки
+├── models/               # Логика данных и модели
+│   ├── database.py       # Работа с базой данных (SQLite)
+│   └── transaction.py    # Модель транзакции
+├── views/                # Интерфейс пользователя (UI)
+│   ├── main_window.py    # Главный экран
+│   ├── add_transaction.py# Окно добавления транзакции
+│   └── report_view.py    # Экран для отчетов и графиков
+├── controllers/          # Логика взаимодействия между UI и моделями
+│   ├── main_controller.py # Основной контроллер
+│   └── report_controller.py # Контроллер для отчетов
+├── resources/            # Ресурсы приложения (иконки, стили)
+│   ├── icons/            # Иконки
+│   └── styles.qss        # Стили (Qt Style Sheets)
+└── utils/                # Утилиты
+    └── helpers.py        # Вспомогательные функции
