@@ -1,3 +1,4 @@
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton,
     QLabel, QTableWidget, QTableWidgetItem, QHeaderView, QAbstractItemView
@@ -11,7 +12,8 @@ class MainWindow(QMainWindow):
 
         # Настройка главного окна
         self.setWindowTitle("FinAnalyze")
-        self.setGeometry(100, 100, 800, 600)
+        self.setGeometry(100, 100, 800, 400)
+        self.setWindowIcon(QIcon('./resources/icons/icon.png'))
 
         # Создание главного виджета
         self.central_widget = QWidget()
@@ -61,6 +63,7 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.no_data_label)
         self.no_data_label.setVisible(False)
 
+
     def set_transactions(self, transactions):
         """
         Обновляет таблицу транзакций.
@@ -80,18 +83,17 @@ class MainWindow(QMainWindow):
         # Показываем или скрываем сообщение о пустом списке
         self.no_data_label.setVisible(len(transactions) == 0)
 
+
     def get_selected_transaction_id(self):
         """
         Возвращает ID выбранной транзакции.
 
         :return: ID транзакции или None, если транзакция не выбрана.
         """
-        selected_row = self.transaction_table.currentRow()
-        if selected_row >= 0:
-            item = self.transaction_table.item(selected_row, 0)
-            if item:
-                return item.data(Qt.UserRole)
-        return None
+        selected_row = int(self.transaction_table.currentRow()) + 1
+        print(f"Selected row: {selected_row}")
+        return selected_row
+
 
     def add_transaction_to_table(self, transaction):
         """
@@ -104,8 +106,9 @@ class MainWindow(QMainWindow):
         self.transaction_table.setItem(row, 0, QTableWidgetItem(transaction.date))
         self.transaction_table.setItem(row, 1, QTableWidgetItem(f"{transaction.amount:.2f}"))
         self.transaction_table.setItem(row, 2, QTableWidgetItem(transaction.category))
-        self.transaction_table.setItem(row, 3, QTableWidgetItem(transaction.type))
+        self.transaction_table.setItem(row, 3, QTableWidgetItem(transaction.type_))
         self.transaction_table.setItem(row, 4, QTableWidgetItem(transaction.description or ""))
+
 
     def update_transaction_in_table(self, row, transaction):
         """
@@ -117,8 +120,9 @@ class MainWindow(QMainWindow):
         self.transaction_table.setItem(row, 0, QTableWidgetItem(transaction.date))
         self.transaction_table.setItem(row, 1, QTableWidgetItem(f"{transaction.amount:.2f}"))
         self.transaction_table.setItem(row, 2, QTableWidgetItem(transaction.category))
-        self.transaction_table.setItem(row, 3, QTableWidgetItem(transaction.type))
+        self.transaction_table.setItem(row, 3, QTableWidgetItem(transaction.type_))
         self.transaction_table.setItem(row, 4, QTableWidgetItem(transaction.description or ""))
+
 
     def delete_selected_transaction(self):
         """

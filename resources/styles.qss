@@ -1,186 +1,119 @@
-/* Общие настройки для приложения */
+/* Основные стили */
 QWidget {
+    background-color: #242424;
     font-family: Arial, sans-serif;
-    font-size: 12px;
-    background-color: #f5f5f5;
-    color: #333;
+    font-size: 14px;
+    color: white;
 }
 
-/* Настройки для кнопок */
-QPushButton {
-    background-color: #4CAF50;
+/* Заголовки */
+QLabel#titleLabel {
+    font-size: 18px;
+    font-weight: bold;
     color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    min-width: 80px;
+    padding: 5px 0;
+}
+
+/* Кнопки */
+QPushButton {
+    background-color: #12965f;
+    color: white;
+    border: 1px solid #3e8e41;
+    border-radius: 7px;
+    padding: 8px 15px;
 }
 
 QPushButton:hover {
-    background-color: #45a049;
+    background-color: #0fa667;
 }
 
 QPushButton:pressed {
-    background-color: #388e3c;
+    background-color: #0fa667;
 }
 
-QPushButton:disabled {
-    background-color: #bdbdbd;
-    color: #757575;
+QPushButton#cancelButton {
+    background-color: #f44336;
+    border-color: #d32f2f;
 }
 
-/* Настройки для таблиц */
-QTableWidget {
+QPushButton#cancelButton:hover {
+    background-color: #e53935;
+}
+
+QPushButton#cancelButton:pressed {
+    background-color: #c62828;
+}
+
+/* Поля ввода */
+QLineEdit, QSpinBox, QDateEdit, QComboBox {
     background-color: white;
-    border: 1px solid #ddd;
-    gridline-color: #ccc;
-    font-size: 14px;
+    border: 1px solid #474747;
+    border-radius: 7px;
+    padding: 5px;
+    min-height: 25px;
+    background-color: #333333;
 }
 
-QTableWidget::item {
-    padding: 8px;
+QLineEdit:focus, QSpinBox:focus, QDateEdit:focus, QComboBox:focus {
+    border: 1px solid #4CAF50;
+}
+
+/* Список транзакций */
+QTableWidget {
+    background-color: #333333;
+    border: 1px solid #474747;
+    border-radius: 7px;
+    gridline-color: #575757;
+    selection-background-color: #0a3322;
+}
+
+QHeaderView::section {
+    background-color: #242424;
+    padding: 5px;
+    font-weight: bold;
+    border: 1px solid #474747;
 }
 
 QTableWidget::item:selected {
-    background-color: #4CAF50;
+    background-color: #153025;
     color: white;
 }
 
-/* Настройки для строк и столбцов в таблицах */
-QHeaderView::section {
-    background-color: #f1f1f1;
-    padding: 10px;
-    font-size: 14px;
-    color: #555;
-    border: 1px solid #ddd;
-}
-
-/* Настройки для текстовых полей (QLineEdit) */
-QLineEdit {
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-QLineEdit:focus {
-    border-color: #4CAF50;
-}
-
-/* Настройки для выпадающих списков (QComboBox) */
-QComboBox {
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-QComboBox:hover {
-    border-color: #4CAF50;
-}
-
-QComboBox::drop-down {
-    border-left: 1px solid #ccc;
-}
-
-QComboBox QAbstractItemView {
-    background-color: white;
-    border: 1px solid #ccc;
-    selection-background-color: #4CAF50;
-    font-size: 14px;
-}
-
-/* Настройки для полей выбора даты (QDateEdit) */
-QDateEdit {
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-QDateEdit:focus {
-    border-color: #4CAF50;
-}
-
-/* Настройки для заголовков */
-QLabel {
-    font-size: 14px;
-    color: #333;
-}
-
-QLabel#header_label {
-    font-size: 18px;
-    font-weight: bold;
-    color: #4CAF50;
-}
-
-/* Настройки для разделителей */
-QSplitter::handle {
-    background-color: #ddd;
-    border: 1px solid #bbb;
-}
-
-QSplitter::handle:hover {
-    background-color: #ccc;
-}
-
-/* Настройки для окон сообщений */
+/* Сообщения */
 QMessageBox {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
-
-QMessageBox QPushButton {
-    background-color: #4CAF50;
+    background-color: #242424;
     color: white;
-    padding: 8px 12px;
-    border-radius: 5px;
 }
 
-QMessageBox QPushButton:hover {
-    background-color: #45a049;
-}
-
-QMessageBox QPushButton:pressed {
-    background-color: #388e3c;
-}
-
-QMessageBox QPushButton:disabled {
-    background-color: #bdbdbd;
-    color: #757575;
-}
-
-/* Настройки для вкладок */
-QTabWidget::pane {
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-}
-
-QTabWidget::tab-bar {
-    alignment: center;
-}
-
-QTabBar::tab {
-    background-color: #e1e1e1;
-    padding: 10px;
-    font-size: 14px;
-    color: #333;
+/* Скроллбары */
+QScrollBar:vertical {
     border: 1px solid #ddd;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    background: #333333;
+    width: 10px;
+    margin: 0px 0px 0px 0px;
 }
 
-QTabBar::tab:hover {
-    background-color: #d1d1d1;
+QScrollBar::handle:vertical {
+    background: #888;
+    min-height: 20px;
 }
 
-QTabBar::tab:selected {
-    background-color: #4CAF50;
-    color: white;
-    border-color: #4CAF50;
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    background: none;
+}
+
+QScrollBar:horizontal {
+    border: 1px solid #ddd;
+    background: #f5f5f5;
+    height: 10px;
+    margin: 0px 0px 0px 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background: #888;
+    min-width: 20px;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    background: none;
 }

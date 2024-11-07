@@ -17,6 +17,7 @@ class Transaction:
         self.type_ = type_
         self.description = description
 
+
     def to_dict(self):
         """
         Преобразует объект транзакции в словарь для удобной передачи данных.
@@ -31,6 +32,7 @@ class Transaction:
             "type": self.type_,
             "description": self.description,
         }
+
 
     @staticmethod
     def from_dict(data):
@@ -49,21 +51,24 @@ class Transaction:
             description=data.get("description")
         )
 
+
     def is_income(self):
         """
         Проверяет, является ли транзакция доходом.
 
-        :return: True, если тип транзакции 'Income', иначе False.
+        :return: True, если тип транзакции 'Доходы', иначе False.
         """
-        return self.type_ == "Income"
+        return self.type_ == "Доходы"
+
 
     def is_expense(self):
         """
         Проверяет, является ли транзакция расходом.
 
-        :return: True, если тип транзакции 'Expense', иначе False.
+        :return: True, если тип транзакции 'Расходы', иначе False.
         """
-        return self.type_ == "Expense"
+        return self.type_ == "Расходы"
+
 
     def __str__(self):
         """

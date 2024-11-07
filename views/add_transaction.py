@@ -12,7 +12,7 @@ class AddTransactionDialog(QDialog):
 
         # Настройка диалогового окна
         self.setWindowTitle("Добавить транзакцию")
-        self.setFixedSize(400, 300)
+        self.setFixedSize(400, 390)
 
         # Основной layout
         self.layout = QVBoxLayout(self)
@@ -36,7 +36,7 @@ class AddTransactionDialog(QDialog):
         # Поле для выбора типа транзакции (доход или расход)
         self.type_label = QLabel("Тип:")
         self.type_input = QComboBox()
-        self.type_input.addItems(["Income", "Expense"])
+        self.type_input.addItems(["Доходы", "Расходы"])
 
         # Поле для ввода описания
         self.description_label = QLabel("Описание:")
@@ -67,6 +67,7 @@ class AddTransactionDialog(QDialog):
         self.save_button.clicked.connect(self.accept)
         self.cancel_button.clicked.connect(self.reject)
 
+
     def get_transaction_data(self):
         """
         Возвращает данные транзакции, введенные пользователем.
@@ -80,6 +81,7 @@ class AddTransactionDialog(QDialog):
             "type_": self.type_input.currentText(),
             "description": self.description_input.text()
         }
+
 
     def accept(self):
         """

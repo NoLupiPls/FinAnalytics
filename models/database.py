@@ -10,6 +10,7 @@ class Database:
         self.cursor = self.connection.cursor()
         self.create_tables()
 
+
     def create_tables(self):
         """Создает таблицы в базе данных, если они не существуют."""
         self.cursor.execute("""
@@ -45,6 +46,7 @@ class Database:
         ))
         self.connection.commit()
 
+
     def get_transactions(self):
         """
         Возвращает все транзакции из базы данных.
@@ -58,6 +60,7 @@ class Database:
         transactions = []
         for row in rows:
             transaction = Transaction(
+                transaction_id=row[0],
                 date=row[1],
                 amount=row[2],
                 category=row[3],
@@ -66,8 +69,8 @@ class Database:
             )
             transactions.append(transaction)
 
-        print(transaction.date)
         return transactions
+
 
     def get_transaction_by_id(self, transaction_id):
         """
@@ -93,10 +96,12 @@ class Database:
             }
         return None  # Возвращаем None, если транзакция не найдена
 
+
     def get_all_transactions(self):
         """Возвращает все транзакции из базы данных."""
         self.cursor.execute("SELECT * FROM transactions ORDER BY date DESC")
         return self.cursor.fetchall()
+
 
     def get_transactions_by_category(self, category):
         """Возвращает транзакции по указанной категории."""
@@ -105,6 +110,7 @@ class Database:
         """, (category,))
         return self.cursor.fetchall()
 
+
     def get_transactions_by_date_range(self, start_date, end_date):
         """Возвращает транзакции в указанном диапазоне дат."""
         self.cursor.execute("""
@@ -112,10 +118,12 @@ class Database:
         """, (start_date, end_date))
         return self.cursor.fetchall()
 
+
     def delete_transaction(self, transaction_id):
         """Удаляет транзакцию по ID."""
         self.cursor.execute("DELETE FROM transactions WHERE id = ?", (transaction_id,))
         self.connection.commit()
+
 
     def update_transaction(self, transaction_id, date, amount, category, type_, description=None):
         """Обновляет данные о транзакции по ID."""
@@ -126,6 +134,7 @@ class Database:
         """, (date, amount, category, type_, description, transaction_id))
         self.connection.commit()
 
+
     def get_total_by_type(self, type_):
         """Возвращает общую сумму транзакций для указанного типа ('Income' или 'Expense')."""
         self.cursor.execute("""
@@ -133,6 +142,7 @@ class Database:
         """, (type_,))
         result = self.cursor.fetchone()
         return result[0] if result[0] is not None else 0
+
 
     def close(self):
         """Закрывает соединение с базой данных."""

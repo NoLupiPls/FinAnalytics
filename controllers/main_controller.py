@@ -24,12 +24,14 @@ class MainController:
         # Показ главного окна
         self.main_window.show()
 
+
     def load_transactions(self):
         """
         Загружает транзакции из базы данных и отображает их в основном окне.
         """
         transactions = self.database.get_transactions()
         self.main_window.set_transactions(transactions)
+
 
     def add_transaction(self):
         """
@@ -42,11 +44,12 @@ class MainController:
                 date=transaction_data['date'],
                 amount=transaction_data['amount'],
                 category=transaction_data['category'],
-                type=transaction_data['type'],
+                type_=transaction_data['type_'],
                 description=transaction_data['description']
             )
             self.database.add_transaction(transaction)
             self.main_window.add_transaction_to_table(transaction)
+
 
     def edit_transaction(self):
         """
@@ -62,7 +65,7 @@ class MainController:
         dialog.date_input.setDate(transaction.date)
         dialog.amount_input.setText(str(transaction.amount))
         dialog.category_input.setCurrentText(transaction.category)
-        dialog.type_input.setCurrentText(transaction.type)
+        dialog.type_input.setCurrentText(transaction.type_)
         dialog.description_input.setText(transaction.description or "")
 
         if dialog.exec_() == QDialog.Accepted:
@@ -70,10 +73,11 @@ class MainController:
             transaction.date = updated_data['date']
             transaction.amount = updated_data['amount']
             transaction.category = updated_data['category']
-            transaction.type = updated_data['type']
+            transaction.type_ = updated_data['type_']
             transaction.description = updated_data['description']
             self.database.update_transaction(transaction)
             self.load_transactions()
+
 
     def delete_transaction(self):
         """
@@ -92,6 +96,7 @@ class MainController:
         if reply == QMessageBox.Yes:
             self.database.delete_transaction(transaction_id)
             self.load_transactions()
+
 
     def show_report(self):
         """

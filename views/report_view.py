@@ -55,6 +55,7 @@ class ReportView(QDialog):
         # Инициализация отчета
         self.update_report()
 
+
     def update_report(self):
         """
         Обновляет отчет по выбранному периоду.
@@ -70,6 +71,7 @@ class ReportView(QDialog):
         # Обновление графика
         self.update_chart(filtered_data)
 
+
     def filter_transactions_by_period(self, period):
         """
         Фильтрует транзакции по выбранному периоду.
@@ -80,6 +82,7 @@ class ReportView(QDialog):
         # Фильтрация данных по выбранному периоду (примерный код)
         # В реальном приложении здесь будет фильтрация по дате
         return self.transaction_data  # Пока возвращаем все данные без фильтрации
+
 
     def update_report_table(self, data):
         """
@@ -93,18 +96,19 @@ class ReportView(QDialog):
             category = transaction.category
             amount = transaction.amount
             if category not in report_data:
-                report_data[category] = {"Income": 0, "Expense": 0}
+                report_data[category] = {"Доходы": 0, "Расходы": 0}
             if transaction.is_income():
-                report_data[category]["Income"] += amount
+                report_data[category]["Доходы"] += amount
             else:
-                report_data[category]["Expense"] += amount
+                report_data[category]["Расходы"] += amount
 
         # Очистка и заполнение таблицы
         self.report_table.setRowCount(len(report_data))
         for row, (category, values) in enumerate(report_data.items()):
             self.report_table.setItem(row, 0, QTableWidgetItem(category))
-            self.report_table.setItem(row, 1, QTableWidgetItem(f"{values['Income']:.2f}"))
-            self.report_table.setItem(row, 2, QTableWidgetItem(f"{values['Expense']:.2f}"))
+            self.report_table.setItem(row, 1, QTableWidgetItem(f"{values['Доходы']:.2f}"))
+            self.report_table.setItem(row, 2, QTableWidgetItem(f"{values['Расходы']:.2f}"))
+
 
     def update_chart(self, data):
         """
@@ -125,16 +129,16 @@ class ReportView(QDialog):
             category = transaction.category
             amount = transaction.amount
             if category not in report_data:
-                report_data[category] = {"Income": 0, "Expense": 0}
+                report_data[category] = {"Доходы": 0, "Расходы": 0}
             if transaction.is_income():
-                report_data[category]["Income"] += amount
+                report_data[category]["Доходы"] += amount
             else:
-                report_data[category]["Expense"] += amount
+                report_data[category]["Расходы"] += amount
 
         for category, values in report_data.items():
             categories.append(category)
-            income_values.append(values["Income"])
-            expense_values.append(values["Expense"])
+            income_values.append(values["Доходы"])
+            expense_values.append(values["Расходы"])
 
         # Построение графика
         ax = self.figure.add_subplot(111)

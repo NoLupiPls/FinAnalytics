@@ -3,16 +3,19 @@ import os
 
 class Config:
     # Путь к базе данных SQLite
-    DATABASE_PATH = os.path.join(os.path.dirname(__file__), "database", "finance_tracker.db")
+    DATABASE_PATH = os.path.join(os.path.expanduser("~"), ".FinAnalytics", "database", "finance_tracker.db")
 
     # Использовать ли стиль (CSS файл)
     USE_STYLESHEET = True
+
+    # Версия пакета
+    __version__ = "1.0.0c"
 
     # Путь к файлу со стилями для PyQt (если используется)
     STYLESHEET_PATH = os.path.join(os.path.dirname(__file__), "resources", "styles.qss")
 
     # Настройки валюты
-    DEFAULT_CURRENCY = "USD"  # Валюта по умолчанию
+    DEFAULT_CURRENCY = "RUB"  # Валюта по умолчанию
     CURRENCY_SYMBOLS = {
         "USD": "$",
         "EUR": "€",
@@ -25,10 +28,10 @@ class Config:
 
     # Настройки для транзакций
     TRANSACTION_CATEGORIES = [
-        "Food", "Transportation", "Utilities", "Entertainment",
-        "Healthcare", "Education", "Other"
+        "Еда", "Транспорт", "Коммунальные услуги", "Развлечения",
+        "Здоровье", "Обучение", "Другое"
     ]
-    DEFAULT_TRANSACTION_TYPE = "Expense"  # Тип транзакции по умолчанию
+    DEFAULT_TRANSACTION_TYPE = "Расходы"  # Тип транзакции по умолчанию
 
 
 # Проверка наличия папки для базы данных

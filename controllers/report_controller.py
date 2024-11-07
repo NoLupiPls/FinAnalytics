@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import QMessageBox
 from views.report_view import ReportView
 from models.database import Database
-from models.transaction import Transaction
 from datetime import datetime, timedelta
 
 
@@ -10,6 +9,7 @@ class ReportController:
         # Инициализация базы данных и главного окна
         self.database = Database()
         self.main_window = main_window
+
 
     def generate_report(self, period):
         """
@@ -25,6 +25,7 @@ class ReportController:
         # Отображаем отчет в соответствующем окне
         report_dialog = ReportView(filtered_transactions)
         report_dialog.exec_()
+
 
     def filter_transactions_by_period(self, transactions, period):
         """
@@ -57,6 +58,7 @@ class ReportController:
         ]
 
         return filtered_transactions
+
 
     def show_report(self, period):
         """
