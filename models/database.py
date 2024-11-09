@@ -30,7 +30,7 @@ class Database:
         """
         Вставка транзакции в базу данных.
 
-        :param transaction: объект класса Transaction
+        :param transaction: Объект класса Transaction
         """
         query = """
         INSERT INTO transactions (date, amount, category, type_, description)
@@ -81,7 +81,7 @@ class Database:
         """
         query = "SELECT date, amount, category, type_, description FROM transactions WHERE id = ?"
         self.cursor.execute(query, (transaction_id,))
-        result = self.cursor.fetchone()\
+        result = self.cursor.fetchone()
 
         print("Результат запроса:", result)  # Отладочный вывод
 

@@ -1,3 +1,4 @@
+# Данные функции реализованы для дальнейшего развития
 from PyQt5.QtCore import QDate
 from datetime import datetime
 
