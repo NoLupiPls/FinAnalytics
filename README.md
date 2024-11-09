@@ -42,7 +42,7 @@ FinAnalytics/
 
 1. Склонируйте репозиторий:
    ```bash
-   git clone https://github.com/your-username/financial-tracker.git
+   git clone https://github.com/NoLupiPls/FinAnalytics.git
    ```
 2. Перейдите в директорию проекта:
    ```bash
