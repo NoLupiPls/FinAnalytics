@@ -11,7 +11,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         # Настройка главного окна
-        self.setWindowTitle("FinAnalyze")
+        self.setWindowTitle("Финансовый трекер")
         self.setGeometry(100, 100, 800, 400)
         self.setWindowIcon(QIcon('./resources/icons/icon.png'))
 
