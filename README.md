@@ -46,7 +46,7 @@ FinAnalytics/
    ```
 2. Перейдите в директорию проекта:
    ```bash
-   cd FinAnanlytics
+   cd FinAnalytics
    ```
 3. Установите зависимости:
    ```bash
