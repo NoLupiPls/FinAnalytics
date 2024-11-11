@@ -11,7 +11,7 @@ class AddTransactionDialog(QDialog):
         super().__init__(parent)
 
         # Настройка диалогового окна
-        self.setWindowTitle("Добавить транзакцию")
+        self.setWindowTitle("Детализация транзакции")
         self.setFixedSize(400, 390)
 
         # Основной layout
