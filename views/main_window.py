@@ -13,7 +13,7 @@ class MainWindow(QMainWindow):
         # Настройка главного окна
         self.setWindowTitle("Финансовый трекер")
         self.setGeometry(100, 100, 800, 400)
-        self.setWindowIcon(QIcon('./resources/icons/icon.png'))
+        self.setWindowIcon(QIcon('./resources/icon.png'))
 
         # Создание главного виджета
         self.central_widget = QWidget()
