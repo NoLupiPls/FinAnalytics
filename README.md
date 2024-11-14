@@ -22,7 +22,7 @@ FinAnalytics/
 ├── main.py                   # Запуск приложения
 ├── config.py                 # Конфигурации и настройки
 ├──dist/
-│   └── FinTracker.exe        # Программма
+│   └── FinTracker.exe        # Программа
 ├── models/                   # Логика данных и модели
 │   ├── database.py           # Работа с базой данных (SQLite)
 │   └── transaction.py        # Модель транзакции
